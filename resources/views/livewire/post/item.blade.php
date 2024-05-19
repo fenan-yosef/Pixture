@@ -62,8 +62,10 @@
                 <!-- Slides -->
                 <div class="swiper-slide"><x-video/></div>
                 <div class="swiper-slide"><img src="https://cdn.pixabay.com/photo/2021/11/03/08/24/baskets-6765014_1280.jpg" alt="" class="h-[500px] w-full block objesc"></div>
-                <div class="swiper-slide">Slide 3</div>
-                
+                <div class="swiper-slide"><img src="https://cdn.pixabay.com/photo/2021/11/03/08/24/baskets-6765014_1280.jpg" alt="" class="h-[500px] w-full block objesc"></div>
+                <div class="swiper-slide"><img src="https://cdn.pixabay.com/photo/2021/11/03/08/24/baskets-6765014_1280.jpg" alt="" class="h-[500px] w-full block objesc"></div>
+                <div class="swiper-slide"><img src="https://cdn.pixabay.com/photo/2021/11/03/08/24/baskets-6765014_1280.jpg" alt="" class="h-[500px] w-full block objesc"></div>
+
             </div>
             <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
