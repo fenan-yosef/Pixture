@@ -21,9 +21,9 @@ class Post extends Model
     ];
 
 
-    // function media() : MorphMany{
-    //     return $this->morphMany(related: Media::class,name: 'mediable');
-    // }
+    function media() : MorphMany{
+        return $this->morphMany(related: Media::class,name: 'mediable');
+    }
 
 
     
