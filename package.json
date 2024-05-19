@@ -18,6 +18,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@alpinejs/intersect": "^3.13.10",
+        "swiper": "^11.1.3",
         "tailwind-scrollbar-hide": "^1.1.7"
     }
 }

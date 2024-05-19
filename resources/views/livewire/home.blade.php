@@ -49,9 +49,12 @@
                 </ul>
             </section>
 
+            <!--- posts --->
+
             <section class="mt-5 space-y-4 p-2">
 
                 <livewire:post.item />
+                
 
             </section>
 
