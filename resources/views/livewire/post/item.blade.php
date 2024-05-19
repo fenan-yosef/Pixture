@@ -69,15 +69,28 @@
             <div class="swiper-pagination"></div>
 
             <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev">
+
+            <!-- prev -->
+            <div class="swiper-button-prev absolute top-1/2 z-10 p-2">
                 <div class=" bg-white/95 border p-1 rounded-full text-gray-900">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.8" stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                     </svg>
 
                 </div>
             </div>
-            <div class="swiper-button-next"></div>
+            <!-- next -->
+            <div class="swiper-button-next absolute right-0 top-1/2 z-10 p-2">
+
+                <div class=" bg-white/95 border p-1 rounded-full text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.8" stroke="currentColor" class="w-4 h-4">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+</svg>
+
+
+                </div>
+
+            </div>
 
             <!-- If we need scrollbar -->
             <div class="swiper-scrollbar"></div>
