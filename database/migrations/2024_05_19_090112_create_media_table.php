@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('media',callback: function (Blueprint $table) {
             $table->id();
             $table->morphs(name:'mediable'); //for adding videos and tables in one table
-            $table->enum(column:'mime', allowed:['image' , 'video']);
+            $table->string(column:'url');
+            $table->enum(column: 'mime',allowed: ['image' , 'video']);
             $table->timestamps();
         });
     }

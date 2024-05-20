@@ -29,7 +29,7 @@ class Post extends Model
     
 
     function user() : BelongsTo{
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(related: User::class);
     }
 
 

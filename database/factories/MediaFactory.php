@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Post;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Media>
@@ -51,7 +52,9 @@ class MediaFactory extends Factory
 
                 $urls = [
                     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+                    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4'
+
                 ];
 
                 return $this->faker->randomElement(array: $urls);
@@ -66,9 +69,9 @@ class MediaFactory extends Factory
 
     function getMime($url): string
     {
-        if (str()->contains(needles: $url, ignoreCase: 'gtv-videos-bucket')) {
+        if (str()->contains( $url , 'gtv-videos-bucket' )) {
             return 'video';
-        } elseif (str()->contains(needles: $url, ignoreCase: 'images.unsplash.com')) {
+        } elseif (str()->contains( $url, 'images.unsplash.com')) {
             return 'image';
         }
     }
@@ -79,7 +82,7 @@ class MediaFactory extends Factory
         $url = $this->getUrl(type: 'reel');
         $mime = $this->getMime(url: $url);
 
-        return $this->state(function (array $attributes) use ($url, $mime) {
+        return $this->state(state: function (array $attributes) use ($url, $mime) {
 
             return [
                 'mime' => $mime,

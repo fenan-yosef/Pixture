@@ -82,6 +82,9 @@
 
                 <!-- If we need navigation buttons -->
 
+
+                @if ( count($post->media)>1 )
+
                 <!-- prev -->
                 <div class="swiper-button-prev absolute top-1/2 z-10 p-2">
                     <div class=" bg-white/95 border p-1 rounded-full text-gray-900">
@@ -105,6 +108,9 @@
                     </div>
 
                 </div>
+                @endif
+
+
 
                 <!-- If we need scrollbar -->
                 <div class="swiper-scrollbar"></div>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId(column:'user_id')->constrained();
             $table->string(column:'description')->nullable();
+            $table->string(column: 'location')->nullable();
             $table->boolean(column:'hide_like_view')->default(value: false);
             $table->boolean(column:'allow_commenting')->default(value: false);
             $table->enum(column:'type' , allowed: ['post' , 'reel']);
