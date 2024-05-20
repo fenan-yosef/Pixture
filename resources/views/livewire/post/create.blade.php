@@ -23,7 +23,10 @@
     <main class="grid grid-cols-12 gap-3 h-full w-full overflow-hidden">
 
         <aside class="lg:col-span-7 m-auto items-center w-full overflow-scroll">
-            <label for="customFileInput" class="m-auto max-w-fit flex-col flex gap-3 cursor-pointer">
+           
+           
+
+            <label for="customFileInput" class=" m-auto max-w-fit flex-col flex gap-3 cursor-pointer">
                 <input type="file" multiple accept=".jpg,.png,.jpeg" id="customFileInput"   type="text" class="sr-only">
 
                 <span class="m-auto">
@@ -42,27 +45,87 @@
 
 
             </label>
+           
+           
 
             {{-- show when file count is > 0 --}}
 
-            <div class="flex overflow-x-scroll w-[500px] h-96 snap-x snap-mandatory gap-2 px-2">
+            <div class="
+            hidden
+            {{-- flex  --}}
+            overflow-x-scroll w-[500px] h-96 snap-x snap-mandatory gap-2 px-2">
 
                 <div class="w-full h-full shrink-0 snap-always snap-center">
-                    <x-video />
+                    <img src="https://images.unsplash.com/photo-1715936745853-2fbed4fb33ba?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8fA%3D%3D" alt="" class=" w-full h-full object-contain">
+                    
+                    
                 </div>
 
                 <div class="w-full h-full snap-always shrink-0 snap-center">
 
-                    <img src="https://images.unsplash.com/photo-1715936745853-2fbed4fb33ba?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8fA%3D%3D" alt="" class="h-full w-full object-contain">
-                    
+                    <x-video />
                 </div>
 
             </div>
 
-
+            
         </aside>
 
         <aside class="lg:col-span-5 h-full border-l p-3 flex gap-4 flex-col overflow-hidden overflow-y-scroll">
+
+            <div class="flex items-center gap-2">
+                <x-avatar class="w-9 h-9"/>
+                <h5 class="font-bold">{{fake()->name()}}</h5>
+            </div>
+
+            <div >
+                <textarea
+                 placeholder="Add a caption"
+                 class="border-0 focus:border-0 px-0 w-full rounded-lg bg-white h-32 focus:outline-none focus:ring-0"
+                 name="" id="" cols="30" rows="10"></textarea>
+
+            </div>
+
+            <div class="w-full items-center">
+                <input type="text"  
+                placeholder="Add Location"
+                class="border-0 focus:border-0 px-0 w-full rounded-lg bg-white focus:outline-none focus:ring-0"
+                >
+            </div>
+
+            <div class="">
+                <h6 class="text-gray-500 font-medium text-base">Advanced Settings</h6>
+                <ul>
+                    <li>
+                        <div class="flex items-center gap-3 justify-between">
+
+                            <span>hide like and view count on this post</span>
+
+                            <label class="inline-flex items-center mb-5 cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                            </label>
+
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="flex items-center gap-3 justify-between">
+
+                            <span>Turn off commenting</span>
+
+                            <label class="inline-flex items-center mb-5 cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                            </label>
+
+                        </div>
+
+                    </li>
+                </ul>
+
+
+            </div>
 
         </aside>
 
