@@ -3,24 +3,28 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-Route::get( '/', Home::class)->middleware( middleware: 'auth');
-Route::get('/profile/{username}', 'ProfileController@home')->name('profile.home');
+Route::get( uri:'/',action: Home::class)->middleware( middleware: 'auth');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get(uri: '/dashboard', action: function () {
+    return view(view: 'dashboard');
+})->middleware(['auth', 'verified'])->name(name: 'dashboard');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get(uri: '/profile',action: [ProfileController::class, 'edit'])->name(name: 'profile.edit');
+    Route::patch(uri: '/profile',action: [ProfileController::class, 'update'])->name(name: 'profile.update');
+    Route::delete(uri: '/profile',action: [ProfileController::class, 'destroy'])->name(name: 'profile.destroy');
+
 });
 
+
+
 Route::get('/explore', function () {
-    return view('explore');
+    return view('This is the Explore page');
 })->name('explore');
 
 Route::get('/reels', function () {

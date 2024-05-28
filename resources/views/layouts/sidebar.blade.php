@@ -51,19 +51,18 @@
 
                 </span>
 
+
                 <h4 x-cloak x-show="!(shrink||drawer)"
                     class=" text-lg  {{request()->routeIs('Home')?'font-bold':'font-medium'}}">Home</h4>
             </a></li>
+
 
         <li><a class="flex items-center gap-5">
 
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                        <path fill-rule="evenodd"
-                            d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"
-                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clip-rule="evenodd" />
                     </svg>
-
 
                 </span>
 
@@ -191,7 +190,7 @@
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Notifications</h4>
             </a></li>
 
-        <li><div 
+        <li><div
             onclick="Livewire.dispatch('openModal', { component: 'post.create' })" class="flex items-center gap-5">
 
                 <span class="border border-gray-600  rounded-lg p-px">
@@ -209,18 +208,19 @@
 
 
         @auth
+            @php
+            $username = optional(auth()->user())->username;
+        @endphp
 
+        @if ($username)
             <li>
-            <a wire:navigate href="{{route('profile.home',auth()->user()->username)}}" class="flex items-center gap-5">
-
-
-                    <x-avatar src="https://source.unsplash.com/400x400?face" class=" w-7 h-7 shrink-0" />
-
-                    <h4 x-cloak x-show="!(shrink||drawer)"
-                    class=" text-lg  {{request()->routeIs('profile.home')?'font-bold':'font-medium'}} ">Profile</h4>
-               </a>
-           </li>
-      @endauth
+                <a wire:navigate href="{{ route('profile.home', $username) }}" class="flex items-center gap-5">
+                    <x-avatar src="https://source.unsplash.com/400x400?face" class="w-7 h-7 shrink-0" />
+                    <h4 x-cloak x-show="!(shrink || drawer)" class="{{ request()->routeIs('profile.home') ? 'font-bold' : 'font-medium' }}">Profile</h4>
+                </a>
+            </li>
+        @endif
+        @endauth
 
     </ul>
 

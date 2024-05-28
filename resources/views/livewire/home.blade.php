@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-span-8 flex justify-center px-2">
-                
+
                 <input type="text" name="" id="" placeholder="Search"
                 class="border-0 outline-none w-full focus:outline-none bg-gray-100 rounded-lg focus:ring-0 hover:ring-0">
             </div>
@@ -35,16 +35,16 @@
             <!-- stories -->
             <section>
                 <ul class="flex overflow-x-auto scrollbar-hide items-center gap-2">
-                    
+
                     @for ($i = 0; $i < 15; $i++)
-                    <li class="flex flex-col justify-center w-20 gap-1 p-2">
-                        <x-avatar story src="https://source.unsplash.com/500x500?face-{{$i}}" class="h-14 w-14"/>
-                        <p class="text-xs font-mediun truncate">
-                            {{fake()->name}}
-                        </p>
-                    </li>
-                        @endfor
-                    
+                        <li class="flex flex-col justify-center w-20 gap-1 p-2">
+                            <x-avatar story src="https://source.unsplash.com/500x500?face-{{$i}}" class="h-14 w-14"/>
+                            <p class="text-xs font-mediun truncate">
+                                {{fake()->name}}
+                            </p>
+                        </li>
+                    @endfor
+
 
                 </ul>
             </section>
@@ -57,15 +57,15 @@
 
 
                 @foreach ($posts->take(10) as $post)
-                
+
                     <livewire:post.item wire:key="post-{{$post->id}}" :post="$post"/>
-                
+
                 @endforeach
 
                 @else
 
                 <p class="font-bol flex justify-center">No Posts</p>
-                
+
                 @endif
             </section>
 
@@ -99,7 +99,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                     </li>
                         @endfor
                 </ul>
