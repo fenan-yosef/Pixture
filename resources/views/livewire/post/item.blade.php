@@ -36,20 +36,20 @@
 
 
             <div x-init="new Swiper($el, {
-            
+
                 modules: [Navigation, Pagination],
                 loop: true,
-            
+
                 pagination: {
                     el: '.swiper-pagination',
                 },
-            
-            
+
+
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
-            
+
             });" class="swiper h-[500] border bg-white">
                 <!-- Additional required wrapper -->
                 <ul x-cloak class="swiper-wrapper">
@@ -174,7 +174,7 @@
 
         <!-- view post modal -->
 
-        <bubtton class="text-slate-500/90 text-sm font-medium"> view all 555 comments </bubtton>
+        <bubtton onclick="Livewire.dispatch('openModal',{component:'post.view.modal',arguments:{'post':{{$post->id}}}})" class="text-slate-500/90 text-sm font-medium"> view all 555 comments </bubtton>
 
 
         <!-- leave comment -->

@@ -36,6 +36,7 @@ class Create extends ModalComponent
         #validate
 
         $this->validate([
+
             'media.*'=>'required|file|mimes:png,jpg,mp4,jpeg,mov|max:100000',
             'allow_commenting'=>'boolean',
             'hide_like_view'=>'boolean',
@@ -57,25 +58,22 @@ class Create extends ModalComponent
             'allow_commenting'=>$this->allow_commenting,
             'hide_like_view'=>$this->hide_like_view,
             'type'=>$type
+
         ]);
 
         #add media
-
         foreach ($this->media as $key => $media) {
 
             #get mime type
-
             $mime = $this->getMime($media);
 
             #save to storage
-
             $path= $media->store('media','public');
 
             $url= url(Storage::url($path));
 
 
             #create media
-
             Media::create([
 
                 'url'=>$url,
@@ -92,9 +90,7 @@ class Create extends ModalComponent
 
 
             // #dispatch event for post created
-
             $this->dispatch('post-created',$post->id);
-
 
         }
 
@@ -106,6 +102,7 @@ class Create extends ModalComponent
         if (str()->contains($media->getMimeType(),'video')) {
 
             return 'video';
+
         } else {
 
             return 'image';
@@ -120,6 +117,7 @@ class Create extends ModalComponent
         if (count($media)===1 && str()->contains($media[0]->getMimeType(),'video')) {
 
             return 'reel';
+
         } else {
 
             return 'post';
