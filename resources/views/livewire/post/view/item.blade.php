@@ -61,7 +61,12 @@
         </header>
 
         <main>
-              
+
+
+            @if ($comments)
+
+            @foreach ($comments as $comment) 
+            
             <section class="flex flex-col gap-2">
 
                  <!-- main comment-->
@@ -73,8 +78,9 @@
                         <div class="col-span-6 flex flex-wrap text-sm">
                             
                             <p>
-                                <span class="font-bold text-sm"> {{$post->user->name}} </span>
-                                Beautiful City, Great day with my friends.
+                                <span class="font-bold text-sm"> {{$comment->user->name}} </span>
+
+                                {{$comment->body}}
                             </p>
                         </div>
 
@@ -92,7 +98,7 @@
                         
                         <!--footer-->
                         <div class="col-span-7 flex gap-2 text-sm items-center text-gray-700">
-                            <span>2d</span>
+                            <span> {{$comment->created_at->diffForHumans()}} </span>
                             <span class="font-bold">345 Likes</span>
                             <span class="font-semibold">Reply</span>
                         </div> 
@@ -102,6 +108,9 @@
 
                 </div>
 
+                @if ($comment->replies)
+
+                @foreach ($comment->replies as $reply)
 
                 <!--reply-->
                 <div class="flex items-center gap-3 w-11/12 ml-auto py-2">
@@ -112,8 +121,9 @@
                         <div class="col-span-6 flex flex-wrap text-sm">
                             
                             <p>
-                                <span class="font-bold text-sm"> {{$post->user->name}} </span>
-                                Wow!! 
+                                <span class="font-bold text-sm"> {{$reply->user->name}} </span>
+                                <span class="font-bold">@ {{$reply->parent->user->name}} </span>
+                                {{$reply->body}}
                             </p>
                         </div>
 
@@ -131,7 +141,7 @@
                         
                         <!--footer-->
                         <div class="col-span-7 flex gap-2 text-sm items-center text-gray-700">
-                            <span>2d</span>
+                        <span> {{$comment->created_at->diffForHumans()}} </span>
                             <span class="font-bold">345 Likes</span>
                             <span class="font-semibold">Reply</span>
                         </div> 
@@ -140,11 +150,20 @@
 
 
                 </div>
+                @endforeach
+
+                @endif
 
                 
     
             </section>
+            @endforeach
             
+            @else
+
+            No comments
+
+            @endif
             
             
 
@@ -203,7 +222,8 @@
 
             <!-- view post modal -->
 
-            <bubtton onclick="Livewire.dispatch('openModal',{component:'post.view.modal',arguments:{'post':{{$post->id}}}})" class="text-slate-500/90 text-sm font-medium"> view all 555 comments </bubtton>
+            <bubtton 
+            class="text-slate-500/90 text-sm font-medium"> {{$post->comments->count()}} comments </bubtton>
 
 
             <!-- leave comment -->
