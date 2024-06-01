@@ -163,18 +163,47 @@
 
         <button onclick="Livewire.dispatch('openModal', { component: 'post.view.modal', arguments: { post: {{ $post->id }} } })" class="text-slate-500/90 text-sm font-medium"> View all {{ $post->comments->count() }} comments </button>
 
+        @auth
+         {{-- show comments for auth --}}
+            <ul class="my-2">
+                @foreach ($post->comments()->where('user_id',auth()->id())->get() as $comment )
+
+
+                    <li class="grid grid-cols-12 text-sm items-center">
+                        <span class="font-bold col-span-3 mb-auto">{{auth()->user()->name}} </span>
+                        <span class="col-span-8">{{$comment->body}} </span>
+                        <button class="col-span-1 mb-auto flex justify-end pr-px">
+                            {{-- heart --}}
+                                <span wire:click='toggleCommentLike({{$comment->id}})'>
+                                   
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                   </svg>       
+                              </span>
+
+                        </button>
+                   </li>
+               @endforeach
+           </ul>
+        @endauth
+
+
+
 
         <!-- leave comment -->
 
-        <form x-data="{ inputText: '' }" class="grid grid-cols-12 items-center w-full">
+        <form
+        wire:key='{{time()}}'
+        @submit.prevent="$wire.addComment()"
+        x-data="{body:@entangle('body')}" class="grid grid-cols-12 items-center w-full">
             @csrf
 
 
-            <input x-model="inputText" type="text" placeholder="leave a comment" class=" col-span-10 placeholder:text-sm  outline-nonek  focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
+            <input x-model="body" type="text" placeholder="leave a comment" class=" col-span-10 placeholder:text-sm  outline-nonek  focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
 
             <div class="col-span-1 ml-auto flex justify-end text-right">
-                <button x-cloa x-show="inputText.length >0" class="text-sm font-semibold flex justify-end text-blue-500">
-                    post
+                <button type="submit" x-cloa x-show="body.length >0" class="text-sm font-semibold flex justify-end text-blue-500">
+                    Post
                 </button>
             </div>
 
