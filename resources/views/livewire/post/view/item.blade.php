@@ -155,17 +155,21 @@
 
             <!-- leave comment -->
 
-            <form x-data="{ inputText: '' }" class="grid grid-cols-12 items-center w-full">
+            <form
+            wire:key="{{time()}}" 
+            x-data="{body:@entangle('body')}" 
+            @submit.prevent="$wire.addComment()"
+            class="grid grid-cols-12 items-center w-full">
                 @csrf
 
 
-                <input x-model="inputText" type="text" placeholder="leave a comment"
-                    class=" col-span-10 placeholder:text-sm  outline-nonek  focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
+                <input x-model="body" type="text" placeholder="Leave a comment"
+                    class="border-0 col-span-10 placeholder:text-sm  outline-nonek  focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
 
                 <div class="col-span-1 ml-auto flex justify-end text-right">
-                    <button x-cloa x-show="inputText.length >0"
+                    <button type="submit" x-cloak x-show="body.length >0"
                         class="text-sm font-semibold flex justify-end text-blue-500">
-                        post
+                        Post
                     </button>
                 </div>
 
