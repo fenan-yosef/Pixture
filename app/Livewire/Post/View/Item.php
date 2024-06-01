@@ -12,7 +12,7 @@ class Item extends Component
 
     public function render()  
     {
-        $comments = $this->post->comments;
+        $comments = $this->post->comments()->whereDoesntHave('parent')->get();
         return view('livewire.post.view.item', ['comments'=>$comments]);
     }
 }

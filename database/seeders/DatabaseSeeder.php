@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
         /*User::factory(10)->create();
 
         User::factory()->create([
@@ -25,18 +24,33 @@ class DatabaseSeeder extends Seeder
          ]); */
 
 
-        Post::factory(count: 20)->hasComments(rand( min:12, max: 30))->create(attributes: ['type' => 'reel']);
-        Post::factory(count: 12)->hasComments(rand( min:12, max: 30))->create(attributes: ['type' => 'post']);
+         //Post::factory(count: 2)->hasComments(rand( min:12, max: 30))->create(attributes: ['type' => 'reel']);
+         //Post::factory(count: 12)->hasComments(rand( min:12, max: 30))->create(attributes: ['type' => 'post']);
+ 
+         //create comment replies
+ 
+         //Comment::limit(50)->each(function($comment){
+ 
+ 
+             //$comment::factory(rand(1,5))->isReply($comment->commentable)->create(['parent_id'=>$comment->id]);
+     
+         //});
 
-        //create comment replies
+        Post::factory()->hasComments(1)->create(['type' => 'post']);
+        
+        $post= Post::factory()->hasComments(1)->create(['type' => 'post']);
 
-        Comment::limit(50)->each(function($comment){
+       //Create nested comments
 
+       $parentComment= $post->comments->first();
 
-            $comment::factory(rand(1,5))->isReply($comment->commentable)->create(['parent_id'=>$comment->id]);
-    
-        });
+      for ($i=0; $i <  10; $i++) { 
 
+        $nestedComment= Comment::factory()->isReply($parentComment->commentable)->create(['parent_id'=>$parentComment->id]);
+        $parentComment= $nestedComment;//set the new comment as the parent for the next iteration
+      }
+
+        
 
     }
 }
