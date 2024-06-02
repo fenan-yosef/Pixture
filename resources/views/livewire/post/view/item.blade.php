@@ -3,29 +3,25 @@
     <aside class="hidden lg:flex lg:col-span-7 m-auto items-center w-fulloverflow-scroll">
 
         {{-- CSS snap scroll --}}
-        <div class="relative flex overflow-x-scroll overscroll-contain w-[500px] selection:snap-x snap-mandatory gap-2 px-2">
+        <div
+            class="relative flex overflow-x-scroll overscroll-contain w-[500px] selection:snap-x snap-mandatory gap-2 px-2">
 
-            @foreach ($post->media as $key =>$file)
-
+            @foreach ($post->media as $key => $file)
                 <div class="w-full h-full shrink-0 snap-always snap-center">
 
                     @switch($file->mime)
                         @case('video')
-
-                            <x-video source="{{$file->url}}" />
-                            @break
+                            <x-video source="{{ $file->url }}" />
+                        @break
 
                         @case('image')
-
-                            <img src="{{$file->url}}" alt="image" class="h-full w-full block object-scale-down">
-                            @break
+                            <img src="{{ $file->url }}" alt="image" class="h-full w-full block object-scale-down">
+                        @break
 
                         @default
-
                     @endswitch
 
                 </div>
-
             @endforeach
 
         </div>
@@ -36,19 +32,20 @@
 
         <header class="flex items-center gap-3 border-b py-2  sticky  top-0 bg-white z-10 ">
 
-            <x-avatar story src="https://source.unsplash.com/500x500?face-{{rand(1,10)}}" class="h-9 w-9" />
+            <x-avatar story src="https://source.unsplash.com/500x500?face-{{ rand(1, 10) }}" class="h-9 w-9" />
 
             <div class="grid grid-cols-7 w-full gap-2">
 
                 <div class="col-span-5">
-                    <h5 class="font-semibold truncate text-sm">{{$post->user->name}} </h5>
+                    <h5 class="font-semibold truncate text-sm">{{ $post->user->name }} </h5>
                 </div>
 
                 <div class="flex col-span-2 text-right justify-end">
 
                     <button wire:click="$dispatch('closeModal')" class="text-gray-500 ml-auto">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9" stroke="currentColor" class="w-6 h-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9"
+                            stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
 
@@ -65,49 +62,62 @@
 
             @if ($comments)
 
-            @foreach ($comments as $comment) 
-            
-            <section class="flex flex-col gap-2">
+                @foreach ($comments as $comment)
 
-                 <!-- main comment-->
-                @include('livewire.post.view.partials.comment')
+                    <section class="flex flex-col gap-2">
 
-                @if ($comment->replies)
+                        <!-- main comment-->
+                        @include('livewire.post.view.partials.comment')
 
-                    @foreach ($comment->replies as $reply)
+                        @if ($comment->replies)
+                            @foreach ($comment->replies as $reply)
+                                <!--reply-->
+                                @include('livewire.post.view.partials.reply')
+                            @endforeach
+                        @endif
 
-                         <!--reply-->
-                        @include('livewire.post.view.partials.reply')
-                    @endforeach
-                @endif
 
-                
-    
-            </section>
-            @endforeach
-            
+
+                    </section>
+                @endforeach
             @else
-
-            No comments
+                No comments
 
             @endif
-            
-            
+
+
 
         </main>
 
         <!-- footer -->
         <footer class="mt-auto sticky border-t bottom-0 z-10 bg-white">
+            
+            {{-- actions --}}
+            
             <div class="flex gap-4 items-center my-2">
 
-                <span>
-
+                {{-- heart --}}
+                @if ($post->isLikedBy(auth()->user()))
+            <button  wire:click='togglePostLike'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-rose-500">
+                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+              </svg>
+            </button>
+            
+            @else
+                <button wire:click='togglePostLike'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                     </svg>
-                </span>
+                </button>
+                
+            @endif
+
+                @if ($post->allow_commenting)
+
+                {{-- comment --}}
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -116,6 +126,8 @@
                     </svg>
 
                 </span>
+                @endif
+                {{-- forward --}}
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-send w-5 h-5" viewBox="0 0 16 16">
@@ -137,7 +149,9 @@
 
             <!-- likes and views -->
 
-            <p class="font-bold text-sm">704,545 likes</p>
+            @if ($post->totalLikers>0 && !$post->hide_like_view)
+                <p class="font-bold text-sm">{{$post->totalLikers}} {{$post->totalLikers>1? 'likes': 'like' }}</p>
+            @endif
 
             <!-- name and comment -->
 
@@ -147,51 +161,51 @@
                 </p>
             </div>
 
-            <!-- view post modal -->
 
-            <bubtton 
-            class="text-slate-500/90 text-sm font-medium"> {{$post->comments->count()}} comments </bubtton>
+            @if ($post->allow_commenting)
 
+                <!-- view post modal -->
 
-            <!-- leave comment -->
-
-            <form
-            wire:key="{{time()}}" 
-            x-data="{body:@entangle('body')}" 
-            @submit.prevent="$wire.addComment()"
-            class="grid grid-cols-12 items-center w-full">
-                @csrf
+                <bubtton class="text-slate-500/90 text-sm font-medium"> Total {{ $post->comments->count() }} comments
+                </bubtton>
 
 
-                <input x-model="body" type="text" placeholder="Leave a comment"
-                    class="border-0 col-span-10 placeholder:text-sm  outline-nonek  focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
+                <!-- leave comment -->
 
-                <div class="col-span-1 ml-auto flex justify-end text-right">
-                    <button type="submit" x-cloak x-show="body.length >0"
-                        class="text-sm font-semibold flex justify-end text-blue-500">
-                        Post
-                    </button>
-                </div>
-
-                <span class="col-span-1 ml-auto ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
-                    </svg>
-
-                </span>
+                <form wire:key="{{ time() }}" x-data="{ body: @entangle('body') }" @submit.prevent="$wire.addComment()"
+                    class="grid grid-cols-12 items-center w-full">
+                    @csrf
 
 
-            </form>
+                    <input x-model="body" type="text" placeholder="Leave a comment"
+                        class="border-0 col-span-10 placeholder:text-sm  outline-nonek  focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
 
+                    <div class="col-span-1 ml-auto flex justify-end text-right">
+                        <button type="submit" x-cloak x-show="body.length >0"
+                            class="text-sm font-semibold flex justify-end text-blue-500">
+                            Post
+                        </button>
+                    </div>
+
+                    <span class="col-span-1 ml-auto ">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                        </svg>
+
+                    </span>
+
+
+                </form>
+                @endif
 
 
         </footer>
 
 
 
-         
+
     </aside>
 
 </div>

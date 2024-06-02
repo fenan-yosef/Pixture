@@ -4,6 +4,7 @@ namespace App\Livewire;
 use App\Models\Post;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use App\Models\User;
 
 
 class Home extends Component
@@ -63,6 +64,13 @@ class Home extends Component
         
     }
 
+    function toggleFollow( User $user){
+
+        abort_unless(auth()->check(), 401);
+
+        auth()->user()->toggleFollow($user);
+    }
+
 
     function mount(){
 
@@ -73,6 +81,7 @@ class Home extends Component
 
     public function render()
     {
-        return view('livewire.home');
+        $suggestedUsers= User::limit(5)->get();
+        return view('livewire.home' , ['suggestedUsers' => $suggestedUsers]);
     }
 }

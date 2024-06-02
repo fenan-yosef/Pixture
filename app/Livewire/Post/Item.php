@@ -8,9 +8,30 @@ use Livewire\Component;
 
 class Item extends Component
 {
-    public $post;
+    public Post $post;
     
     public $body;
+
+    function togglePostLike(){
+        abort_unless(boolean: auth()->check(), code: 401);
+
+        auth()->user()->toggleLike($this->post);
+    }
+
+
+ function toggleFavorite(){
+        abort_unless(boolean: auth()->check(), code: 401);
+
+        auth()->user()->toggleFavorite($this->post);
+    }
+
+    function toggleCommentLike( Comment $comment){
+        abort_unless(boolean: auth()->check(), code: 401);
+
+        auth()->user()->toggleLike($comment);
+    }
+
+   
     
     
     function addComment() {
