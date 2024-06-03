@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Livewire;
-use App\Models\Post;
-use Livewire\Component;
-use Livewire\Attributes\On;
-use App\Models\User;
 
+use App\Models\Post;
+use App\Models\User;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class Home extends Component
 {
-
 
     public $posts;
 
@@ -17,8 +16,10 @@ class Home extends Component
     public $perPageIncrements=5;
     public $perPage=10;
 
+
     #[On('closeModal')]
-    function reverUrl() {
+    function reverUrl()
+    {
         $this->js("history.replaceState({},'','/')");
     }
 
@@ -34,9 +35,10 @@ class Home extends Component
 
 
 
-    function loadMore() {
+    function loadMore()  {
 
-        //dd('here');
+
+        //   dd('here');
         if (!$this->canLoadMore) {
 
             return null;
@@ -52,36 +54,38 @@ class Home extends Component
 
     }
 
-    #function to load posts 
+
+    #function to load posts
 
     function loadPosts()  {
 
         $this->posts = Post::with('comments.replies')
-        ->latest()
-        ->take($this->perPage)->get();
+            ->latest()
+            ->take($this->perPage)->get();
 
         $this->canLoadMore= (count($this->posts)>= $this->perPage);
-        
+
     }
 
-    function toggleFollow( User $user){
+    function toggleFollow(User $user)  {
 
-        abort_unless(auth()->check(), 401);
+        abort_unless(auth()->check(),401);
 
         auth()->user()->toggleFollow($user);
-    }
-
-
-    function mount(){
-
-        $this->loadPosts(); 
 
     }
 
+
+    function mount()
+    {
+
+        $this->loadPosts();
+
+    }
 
     public function render()
     {
         $suggestedUsers= User::limit(5)->get();
-        return view('livewire.home' , ['suggestedUsers' => $suggestedUsers]);
+        return view('livewire.home',['suggestedUsers'=>$suggestedUsers]);
     }
 }

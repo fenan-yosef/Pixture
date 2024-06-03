@@ -109,11 +109,14 @@
 
                     @foreach ($suggestedUsers as $key=> $user)
                         <li class="flex items-center gap-3">
-                            <x-avatar wire:ignore story src="https://source.unsplash.com/500x500?face-{{ $key }}"
-                                class="h-14 w-14" />
+                            <a href="{{route('profile.home', $user->username)}}">
+                                <x-avatar wire:ignore story src="https://source.unsplash.com/500x500?face-{{ $key }}"
+                                          class="h-14 w-14" />
+                            </a>
+
                             <div class="grid grid-cols-7 w-full gap-2">
                                 <div class="col-span-5">
-                                    <h5 class="font-semibold truncate text-sm">{{ $user->name }}</h5>
+                                    <a href="{{route('profile.home', $user->username)}}" class="font-semibold truncate text-sm">{{ $user->name }}</a>
                                     <p class="text-xs font-mediun truncate" wire:ignore>
                                         Followed by {{ fake()->name }}
                                     </p>
@@ -130,7 +133,7 @@
                                           Follow
                                         </button>
                                     @endif
-                                    
+
                                 </div>
                             </div>
 
