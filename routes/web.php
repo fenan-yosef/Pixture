@@ -4,13 +4,14 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\Explore;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home;
+use App\Livewire\Reels as Livewirereels;
 use App\Livewire\Reels;
 
 
 
-//Route::get(uri: '/dashboard', action: function () {
-//    return view(view: 'dashboard');
-//})->middleware(['auth', 'verified'])->name(name: 'dashboard');
+Route::get(uri: '/dashboard', action: function () {
+    return view(view: 'dashboard');
+})->middleware(['auth', 'verified'])->name(name: 'dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -21,7 +22,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/', Home::class)->name('Home');
     Route::get('/explore', Explore::class)->name('explore');
-
+    Route::get('/reels', Livewirereels::class)->name('reels');
 
 
     Route::get('/profile/{user}',\App\Livewire\Profile\Home::class)->name('profile.home');
@@ -35,9 +36,9 @@ Route::middleware('auth')->group(function () {
 //    return view('This is the Explore page');
 //})->name('explore');
 
-Route::get('/reels', function () {
-    return view('reels');
-})->name('reels');
+//Route::get('/reels', function () {
+//    return view('reels');
+//})->name('reels');
 
 
 require __DIR__.'/auth.php';
