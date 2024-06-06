@@ -173,7 +173,9 @@
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Messages</h4>
             </a></li>
 
-        <li><a class="flex items-center gap-5">
+        <li><div
+        @click="showSearch=false;showNotifications=true;drawer=true; "
+        class="flex items-center gap-5">
 
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9"
@@ -193,7 +195,7 @@
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Notifications</h4>
-            </a></li>
+            </div></li>
 
         <li>
             <div onclick="Livewire.dispatch('openModal', { component: 'post.create' })" class="flex items-center gap-5">
@@ -350,6 +352,13 @@
 
 
             </template>
+
+            <div x-cloak x-show="showNotifications">
+
+            <livewire:components.notifications />
+
+        </div>
+
 
         </div>
 
