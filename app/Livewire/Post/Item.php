@@ -5,6 +5,7 @@ namespace App\Livewire\Post;
 use App\Models\Comment;
 use App\Models\Post;
 use Livewire\Component;
+use App\Notifications\PostLikedNotification;
 
 class Item extends Component
 {
@@ -16,10 +17,16 @@ class Item extends Component
         abort_unless(boolean: auth()->check(), code: 401);
 
         auth()->user()->toggleLike($this->post);
+
+        #send notifcation is post is liked 
+
+        if ($this->post->isLikedBy(auth()->user())) {
+           $this->post->user->notify(new PostLikedNotification(auth()->user(),$this->post));
+        }
     }
 
 
- function toggleFavorite(){
+    function toggleFavorite(){
         abort_unless(boolean: auth()->check(), code: 401);
 
         auth()->user()->toggleFavorite($this->post);
@@ -29,7 +36,10 @@ class Item extends Component
         abort_unless(boolean: auth()->check(), code: 401);
 
         auth()->user()->toggleLike($comment);
+    
+      
     }
+
 
    
     
@@ -48,6 +58,13 @@ class Item extends Component
         ]);
 
         $this->reset('body');
+         #notify user 
+
+         if ($this->post->user_id != auth()->id()) {
+            $this->post->user->notify(new NewCommentNotification(auth()->user(),$comment));
+
+        }
+
 
 
     }
@@ -57,4 +74,4 @@ class Item extends Component
     {
         return view('livewire.post.item');
     }
-}
+}    
