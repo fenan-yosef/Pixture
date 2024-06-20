@@ -3,6 +3,7 @@
 namespace App\Livewire\Profile;
 
 use App\Models\User;
+use App\Notifications\NewFollowerNotification;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
