@@ -3,7 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Explore;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Post\View\Page;
+use App\Livewire\Profile\Home as ProfileHome;
 use App\Livewire\Home;
+use App\Livewire\Profile\Saved;
 use App\Livewire\Reels as Livewirereels;
 use App\Livewire\Reels;
 
@@ -23,11 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/', Home::class)->name('Home');
     Route::get('/explore', Explore::class)->name('explore');
     Route::get('/reels', Livewirereels::class)->name('reels');
+    
+    Route::get('/post/{post}', Page::class)->name('post');
 
 
-    Route::get('/profile/{user}',\App\Livewire\Profile\Home::class)->name('profile.home');
-    Route::get('/profile/{user}/reels',\App\Livewire\Profile\Reels::class)->name('profile.reels');
-    Route::get('/profile/{user}/saved',\App\Livewire\Profile\Saved::class)->name('profile.saved');
+    Route::get('/profile/{user}',ProfileHome::class)->name('profile.home');
+    Route::get('/profile/{user}/reels',Reels::class)->name('profile.reels');
+    Route::get('/profile/{user}/saved',Saved::class)->name('profile.saved');
 });
 
 
