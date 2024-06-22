@@ -67,33 +67,75 @@
               </div>
 
               <a href="{{route('post',$post->id)}}" class="col-span-3 ml-auto">
-                  <img src="https://source.unsplash.com/500x500?nature-{{rand(0,10)}}" alt="" class="h-11 w-10 object-cover">
+                  
+                  @php
+                     $cover=$post->media->first();
+                  @endphp
+                  @switch($cover->mime)
+                        @case('video')
+                        <div class="h-11 w-10">
+
+                            <x-video  :controls="false" source="{{$cover->url}}" />
+                        </div>
+                            
+                            @break
+
+                        @case('image')
+                        <img src="{{$cover->url}}" alt="image" class="h-11 w-10 object-cover">
+                        @break
+                    
+                        @default
+                        
+                  @endswitch
               </a> 
 
            </div>
 
            @break
            @case('App\Notifications\NewCommentNotification')
+           @php
+               $user= \App\Models\User::find($notification->data['user_id']);
+               $comment= \App\Models\Comment::find($notification->data['comment_id']);
+           @endphp
            {{-- NewComment --}}
            <div class="grid grid-cols-12 gap-2 w-full">
-               <a href class="col-span-2">
+               <a href="{{route('profile.home',$user->username)}}" class="col-span-2">
 
                    <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{rand(0,10)}}" class="h-10 w-10"  />
 
                </a> 
 
                <div class="col-span-7 font-medium">
-                   <a href="#"><strong>{{fake()->name}}</strong></a>
+                   <a href="{{route('profile.home',$user->username)}}"><strong>{{$user->name}}</strong></a>
 
-                   <a href="#">
+                   <a href="{{route('post',$comment->commentable->id)}}">
                        Commented:
-                       Lorem, sdfg sdfghj sdfghjk sdfghjk asdfghj asdfghj wsdfbn
-                       <span class="text-gray-400">2d</span>
+                       {{comment->body}}
+                       <span class="text-gray-400">{{$notification->created_at->shortAbsoluteDiffForHumans()}}</span>
                    </a>
                </div>
 
-               <a href class="col-span-3 ml-auto">
-                   <img src="https://source.unsplash.com/500x500?nature-{{rand(0,10)}}" alt="" class="h-11 w-10 object-cover">
+               <a href="{{route('post',$comment->commentable->id)}}" class="col-span-3 ml-auto">
+
+                  @php
+                     $cover=$comment->commentable->media->first();
+                  @endphp
+                  @switch($cover->mime)
+                        @case('video')
+                        <div class="h-11 w-10">
+
+                            <x-video  :controls="false" source="{{$cover->url}}" />
+                        </div>
+                            
+                            @break
+
+                        @case('image')
+                        <img src="{{$cover->url}}" alt="image" class="h-11 w-10 object-cover">
+                        @break
+                    
+                        @default
+                        
+                  @endswitch
                </a> 
 
            </div>

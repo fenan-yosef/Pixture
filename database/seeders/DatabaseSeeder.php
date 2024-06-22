@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
 
        //Create nested comments
 
-       $parentComment= $post->comments->first();
+      $parentComment= $post->comments->first();
 
       for ($i=0; $i <  10; $i++) { 
 
