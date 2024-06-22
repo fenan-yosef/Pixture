@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,7 +16,7 @@ class NewFollowerNotification extends Notification implements ShouldBroadcastNow
     /**
      * Create a new notification instance.
      */
-    public function __construct(public User $user)
+    public function __construct( public User $user)
     {
         //
     }
