@@ -1,4 +1,17 @@
-<div class="w-full p-3">
+<div 
+x-init="
+
+Echo.private('users.{{auth()->user()->id}}')
+    .notification((notification) => {
+     //alert('reached');
+     //$wire.$refresh();
+      @this.$refresh();
+    });
+"
+
+
+
+class="w-full p-3">
 
    <h3 class="font-bold text-4xl">Notifications</h3>
 
