@@ -28,7 +28,7 @@
 
       <div class="col-span-3">
 
-        <img src="{{asset('assets/logo.png')}}" class="h-12 max-w-lg w-full" alt="logo">
+        <img src="{{asset('assets/logo.png')}}" class="h-auto max-w-lg w-full" alt="logo">
 
       </div>
 
@@ -70,7 +70,7 @@
     <aside class="lg:col-span-8   overflow-hidden  ">
 
       {{-- Stories --}}
-      <section>
+      {{-- <section>
         <ul class="flex overflow-x-auto scrollbar-hide items-center gap-2">
 
           @for ($i = 0; $i < 10; $i++) <li class="flex flex-col justify-center w-20 gap-1 p-2">
@@ -80,7 +80,7 @@
             @endfor
         </ul>
 
-      </section>
+      </section> --}}
 
       {{-- posts --}}
       <section class="mt-5 space-y-4 p-2">
@@ -158,27 +158,9 @@
       </section>
 
 
-      {{-- App links --}}
+    
 
-      <section class="mt-10">
-
-        <ol class="flex gap-2 flex-wrap">
-
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">About</a></li>
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">Help</a></li>
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">API</a></li>
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">Jobs</a></li>
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">Privacy</a></li>
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">Terms</a></li>
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">Locations</a></li>
-          <li class="text-xs text-gray-800/90 font-medium"><a href="#" class="hover:underline">About</a></li>
-
-        </ol>
-
-        <h3 class="text-gray-800/90 mt-6 text-sm"> @ 2023 INTAGRAM COURSE </h3>
-
-
-      </section>
+      
 
 
 
