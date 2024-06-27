@@ -19,7 +19,7 @@ class="menu p-3   w-20  h-full grid bg-white border-r text-base-content" :class=
             <img src="{{asset('assets/small_logo.png')}}" class="h-auto max-w-lg w-full" alt="logo">
         </div>
 
-        <img x-cloak x-show="!(shrink ||drawer)" src="{{asset('assets/logo.png')}}" class="h-16 w-44 text-black"
+        <img x-cloak x-show="!(shrink ||drawer)" src="{{asset('assets/logo.png')}}" class="h-16 w-66 text-black"
             alt="logo">
     </div>
 

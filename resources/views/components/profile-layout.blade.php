@@ -64,7 +64,7 @@
 
                     {{-- Send message button --}}
                     <a href="#" type="button"
-                        class=" inline-flex justify-center font-bold items-center  rounded-lg  text-sm p-1.5 px-2 transition  bg-gray-200 hover:bg-slate-100 ">
+                        class=" inline-flex justify-center font-bold items-center  rounded-lg  text-sm p-1.5 px-2 transition  bg-red-800 hover:bg-slate-100 ">
                         Edit profile
                     </a>
 
@@ -123,9 +123,9 @@
 
             {{-- following details --}}
             <div class="grid grid-cols-3 w-full gap-2">
-                <span class="font-bold" wire:key='{{time()}}'>{{$user->posts_count}} Posts</span>
-                <span class="font-bold">{{$user->followers_count}} Followers</span>
-                <span class="font-bold">{{$user->followings_count}} following</span>
+                <span class="font-bold" wire:key='{{time()}}'>{{$user->posts_count}} Photos</span>
+                <span class="font-bold">{{$user->followers_count}} Friends</span>
+                {{-- <span class="font-bold">{{$user->followings_count}} following</span> --}}
             </div>
 
             {{-- profile user's name --}}
@@ -174,7 +174,7 @@
                 
                 
                 <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" id="instagram-reel">
+                    {{-- <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" id="instagram-reel">
                         <path fill="currentColor" fill-rule="evenodd"
                             d="M1 6.5A5.5 5.5 0 0 1 6.5 1h11A5.5 5.5 0 0 1 23 6.5v11a5.5 5.5 0 0 1-5.5 5.5h-11A5.5 5.5 0 0 1 1 17.5v-11ZM6.5 3A3.5 3.5 0 0 0 3 6.5v11A3.5 3.5 0 0 0 6.5 21h11a3.5 3.5 0 0 0 3.5-3.5v-11A3.5 3.5 0 0 0 17.5 3h-11Z"
                             clip-rule="evenodd"></path>
@@ -184,11 +184,11 @@
                         <path fill="#000" fill-rule="evenodd"
                             d="M7.684 1.051a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265zm6 0a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265z"
                             clip-rule="evenodd"></path>
-                    </svg>
+                    </svg> --}}
 
                 </span>
 
-                <h4 class="font-bold capitalize">Reels</h4>
+                <h4 class="font-bold capitalize"></h4>
               </a>
             </li>
 
