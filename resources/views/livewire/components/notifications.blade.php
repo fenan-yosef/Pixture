@@ -37,7 +37,7 @@ class="w-full p-3">
             <div class="grid grid-cols-12 gap-2 w-full">
 
                 <a href="{{route('profile.home',$user->username)}}" class="col-span-2">
-                    <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{rand(0,10)}}"
+                    <x-avatar wire:ignore src="https://picsum.photos/500/500?random=face-3"
                         class="h-10 w-10" />
                 </a>
 
@@ -65,13 +65,14 @@ class="w-full p-3">
             @php
             $user= \App\Models\User::find($notification->data['user_id']);
             $post= \App\Models\Post::find($notification->data['post_id']);
+            $user_id_hash = crc32($user->id);
 
             @endphp
             {{-- PostLiked --}}
             <div class="grid grid-cols-12 gap-2 w-full">
 
                 <a href="{{route('profile.home',$user->username)}}" class="col-span-2">
-                    <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{rand(0,10)}}"
+                    <x-avatar wire:ignore src="https://picsum.photos/500/500?random=face-3"
                         class="h-10 w-10" />
                 </a>
 
@@ -124,7 +125,7 @@ class="w-full p-3">
             <div class="grid grid-cols-12 gap-2 w-full">
 
                 <a href="{{route('profile.home',$user->username)}} " class="col-span-2">
-                    <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{rand(0,10)}}"
+                    <x-avatar wire:ignore src="https://picsum.photos/500/500?random=face-3"
                         class="h-10 w-10" />
 
                 </a>

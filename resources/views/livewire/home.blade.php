@@ -111,7 +111,7 @@
 
       <div class="flex items-center gap-2">
 
-        <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face" class="w-12 h-12" />
+        <x-avatar wire:ignore src="https://picsum.photos/500/500?random=face" class="w-12 h-12" />
         <h4 class="font-medium" wire:ignore>{{fake()->name}} </h4>
 
       </div>
@@ -127,7 +127,7 @@
 
           <li class="flex items-center gap-3">
             <a  href="{{route('profile.home',$user->username)}}" >
-              <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{$key}}" class="w-12 h-12" />
+              <x-avatar wire:ignore src="https://picsum.photos/500/500?random=face-{{$key}}" class="w-12 h-12" />
             </a>
 
             <div class="grid grid-cols-7 w-full gap-2">

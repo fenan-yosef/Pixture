@@ -92,8 +92,8 @@
 
             {{-- Auther --}}
             <div class="flex items-center gap-2">
-                <x-avatar class="w-9 h-9" />
-                <h5 class="font-bold">{{fake()->name()}}  </h5>
+                <x-avatar src="https://picsum.photos/500/500?random=face" class="w-9 h-9" />
+                <!-- <h5 class="font-bold">{{fake()->name}}  </h5> -->
             </div>
 
 

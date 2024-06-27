@@ -31,7 +31,7 @@ class="menu p-3   w-20  h-full grid bg-white border-r text-base-content" :class=
                 <span>
 
                     @if (request()->routeIs('Home'))
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" class="w-7 h-7">
                         <path
                             d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
                         <path
@@ -40,10 +40,11 @@ class="menu p-3   w-20  h-full grid bg-white border-r text-base-content" :class=
                     @else
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-7 h-7">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"stroke="currentColor" stroke-width="0.5"  class="w-7 h-7">
+                        <path
+                            d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+                        <path
+                            d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
                     </svg>
 
                     @endif
@@ -76,10 +77,30 @@ class="menu p-3   w-20  h-full grid bg-white border-r text-base-content" :class=
         </li>
 
 
-        
+        <li><a wire:navigate href="{{route('chat')}}" class="flex items-center gap-5">
+
+                <span>
+                    @if (request()->routeIs('chat') || request()->routeIs('chat.main'))
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" 
+                        viewBox="0 0 24 24" stroke-width="3.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                    </svg>
+
+                    @else
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" 
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                    </svg>
+                    @endif
 
 
-        
+
+
+                </span>
+
+                <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Messages</h4>
+            </a></li>
+
 
         <li>
             <div @click="showSearch=false;showNotifications=true;drawer=true" class="flex items-center gap-5">
@@ -125,7 +146,7 @@ class="menu p-3   w-20  h-full grid bg-white border-r text-base-content" :class=
             <a wire:navigate href="{{route('profile.home',auth()->user()->username)}}" class="flex items-center gap-5">
 
 
-                <x-avatar src="https://source.unsplash.com/400x400?face" class=" w-7 h-7 shrink-0" />
+                <x-avatar src="https://picsum.photos/500/500?random=face" class=" w-7 h-7 shrink-0" />
 
                 <h4 x-cloak x-show="!(shrink||drawer)"
                     class=" text-lg  {{request()->routeIs('profile.home')?'font-bold':'font-medium'}} ">Profile</h4>
@@ -301,7 +322,7 @@ class="menu p-3   w-20  h-full grid bg-white border-r text-base-content" :class=
                                 class="flex gap-2 truncate items-center">
 
                                 <x-avatar wire:ignore class="w-9 h-9 mb-auto"
-                                    src="https://source.unsplash.com/500x500?face-{{$key}}" />
+                                    src="https://picsum.photos/500/500?random=face-{{$key}}" />
 
                                 <div class="flex flex-col">
                                     <span class="font-bold text-sm">{{$user->username}}</span>

@@ -42,7 +42,7 @@
 
         {{-- Avatar --}}
         <div class="col-span-4 flex items-center">
-            <x-avatar src="https://source.unsplash.com/500x500?face" class=" w-20 h-20 lg:h-44 lg:w-44 m-auto" />
+            <x-avatar src="https://picsum.photos/500/500?random=face" class=" w-20 h-20 lg:h-44 lg:w-44 m-auto" />
         </div>
 
 
